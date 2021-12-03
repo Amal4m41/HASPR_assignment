@@ -13,17 +13,20 @@ class TitleDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(flex: 5, child: title),
-        trailing != null
-            ? Expanded(
-                flex: 1,
-                child: trailing!,
-              )
-            : addEmptyWidget(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(flex: 5, child: title),
+          trailing != null
+              ? Expanded(
+                  flex: 1,
+                  child: trailing!,
+                )
+              : addEmptyWidget(),
+        ],
+      ),
     );
   }
 }

@@ -1,16 +1,37 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:haspr_assignment/components/rectangular_round_button.dart';
 import 'package:haspr_assignment/utils/widget_functions.dart';
 
 class JobCardItem extends StatelessWidget {
-  const JobCardItem({Key? key}) : super(key: key);
+  final String jobTitle;
+  final bool isFulltime;
+  final String salaryDetails;
+  final String companyName;
+  final String experienceRequired;
+  final String location;
+  final bool isShowBookmark;
+  final bool isShowExperience;
+
+  const JobCardItem({
+    Key? key,
+    required this.jobTitle,
+    required this.salaryDetails,
+    required this.companyName,
+    this.experienceRequired = '',
+    required this.location,
+    this.isFulltime = true,
+    this.isShowBookmark = false,
+    this.isShowExperience = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 280,
       child: Card(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: Padding(
@@ -19,7 +40,7 @@ class JobCardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Interior Carpet Designer",
+                jobTitle,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               addVerticalSpace(10),
@@ -30,7 +51,7 @@ class JobCardItem extends StatelessWidget {
                     children: [
                       RectangularRoundButton(
                           child: Text(
-                            'Full Time',
+                            isFulltime ? 'Full Time' : 'Part Time',
                             style: TextStyle(fontSize: 9),
                           ),
                           padding:
@@ -40,19 +61,38 @@ class JobCardItem extends StatelessWidget {
                           borderColor: Colors.black,
                           buttonColor: Colors.white),
                       addHorizontalSpace(10),
-                      Text(
-                        'Salary upto rs 15000 / month',
-                        style: TextStyle(fontSize: 11),
-                      ),
+                      // Text(
+                      //   'Salary' + salaryDetails,
+                      //   style: TextStyle(fontSize: 11),
+                      // ),
+                      RichText(
+                          text: TextSpan(
+                              text: 'Salary ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700),
+                              children: [
+                            TextSpan(
+                                text: 'upto ',
+                                style: TextStyle(fontWeight: FontWeight.w300)),
+                            TextSpan(
+                                text: salaryDetails,
+                                style: TextStyle(fontWeight: FontWeight.w400))
+                          ])),
                       Spacer(),
-                      Icon(Icons.bookmark, color: Colors.lightBlueAccent)
+                      isShowBookmark
+                          ? Icon(Icons.bookmark, color: Colors.lightBlueAccent)
+                          : addEmptyWidget()
                     ],
                   ),
                   addVerticalSpace(10),
-                  Text(
-                    '2+ Years Experience',
-                    style: TextStyle(fontSize: 11),
-                  ),
+                  isShowExperience
+                      ? Text(
+                          experienceRequired,
+                          style: TextStyle(fontSize: 11),
+                        )
+                      : addEmptyWidget(),
                 ],
               ),
               addVerticalSpace(20),
@@ -62,13 +102,13 @@ class JobCardItem extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Badonia & Sons',
+                      Text(companyName,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           )),
                       Text(
-                        'Civil Ines, Sagar',
+                        location,
                         style: TextStyle(fontSize: 9),
                       ),
                     ],

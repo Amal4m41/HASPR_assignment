@@ -7,6 +7,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:haspr_assignment/components/job_card_item.dart';
 import 'package:haspr_assignment/components/rectangular_round_button.dart';
+import 'package:haspr_assignment/components/search_bar.dart';
 import 'package:haspr_assignment/components/title_divider.dart';
 import 'package:haspr_assignment/components/title_widget.dart';
 import 'package:haspr_assignment/utils/widget_functions.dart';
@@ -44,47 +45,31 @@ class SeekerHomeScreen extends StatelessWidget {
                     addVerticalSpace(20),
                     Row(
                       children: [
-                        Expanded(
-                          flex: 6,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              color: Colors.grey.shade300,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 8),
-                            child: Row(
-                              children: [
-                                Icon(Icons.search),
-                                Expanded(
-                                    child: TextField(
-                                  decoration: new InputDecoration.collapsed(
-                                      hintText: 'search for a job',
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey.shade800,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                      )),
-                                )),
-                              ],
-                            ),
-                          ),
-                        ),
+                        //TODO: to implmenet search bar and change icon from settings
+                        Expanded(flex: 6, child: SearchBar()),
                         Expanded(
                           flex: 1,
                           child: Icon(Icons.settings),
                         )
                       ],
                     ),
-                    addVerticalSpace(20),
                     TitleDivider(
-                      title: Text(
-                        'Popular Jobs',
-                        style: TextStyle(fontSize: 18),
+                      title: RichText(
+                        text: const TextSpan(
+                            text: 'Popular',
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                            children: [
+                              TextSpan(
+                                  text: ' Jobs',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                  ))
+                            ]),
                       ),
-                      trailing: Text(
+                      trailing: const Text(
                         'Show All',
                         style: TextStyle(fontSize: 12),
                       ),
@@ -92,7 +77,7 @@ class SeekerHomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              addVerticalSpace(10),
+              // addVerticalSpace(10),
               Container(
                 height: 200,
                 decoration: BoxDecoration(
@@ -103,20 +88,38 @@ class SeekerHomeScreen extends StatelessWidget {
                 margin: EdgeInsets.only(left: screenPadding),
                 padding: EdgeInsets.all(16).copyWith(right: 0),
                 child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    // shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: JobCardItem(),
-                        )),
+                  scrollDirection: Axis.horizontal,
+                  // shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (context, index) => const Padding(
+                    padding: EdgeInsets.only(right: 12),
+                    child: JobCardItem(
+                      jobTitle: 'Interior Carpet Designer',
+                      isFulltime: true,
+                      isShowExperience: true,
+                      experienceRequired: '2+ Years Experience',
+                      isShowBookmark: true,
+                      companyName: 'Badonia & Sons',
+                      location: 'Civil Ines, Sagar',
+                      salaryDetails: '₹ 15000 / month',
+                    ),
+                  ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenPadding),
                 child: TitleDivider(
-                  title: Text(
-                    'Jobs Near You.',
-                    style: TextStyle(fontSize: 18),
+                  title: RichText(
+                    text: const TextSpan(
+                        text: 'Jobs',
+                        style: TextStyle(fontSize: 18, color: Colors.black),
+                        children: [
+                          TextSpan(
+                              text: ' Near You.',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ))
+                        ]),
                   ),
                 ),
               ),
@@ -127,7 +130,8 @@ class SeekerHomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(20),
                           topLeft: Radius.circular(20))),
-                  margin: EdgeInsets.all(screenPadding).copyWith(bottom: 0),
+                  margin:
+                      EdgeInsets.all(screenPadding).copyWith(bottom: 0, top: 0),
                   padding: EdgeInsets.all(16).copyWith(bottom: 0),
                   child: ListView.builder(
                       scrollDirection: Axis.vertical,
@@ -135,7 +139,15 @@ class SeekerHomeScreen extends StatelessWidget {
                       itemCount: 5,
                       itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.only(bottom: 12),
-                            child: JobCardItem(),
+                            child: JobCardItem(
+                              jobTitle: 'Interior Carpet Designer',
+                              isFulltime: true,
+                              isShowExperience: false,
+                              isShowBookmark: false,
+                              companyName: 'Badonia & Sons',
+                              location: 'Civil Ines, Sagar',
+                              salaryDetails: 'upto rs 15000 / month',
+                            ),
                           )),
                 ),
               ),
