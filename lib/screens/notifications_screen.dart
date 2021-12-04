@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haspr_assignment/components/notification_divider.dart';
 import 'package:haspr_assignment/components/notification_item.dart';
 import 'package:haspr_assignment/components/title_widget.dart';
+import 'package:haspr_assignment/utils/constants/colors.dart';
 import 'package:haspr_assignment/utils/widget_functions.dart';
 
 class NotificationScreen extends StatelessWidget {

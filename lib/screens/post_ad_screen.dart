@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:haspr_assignment/components/application_history_item.dart';
 import 'package:haspr_assignment/components/notification_divider.dart';
 import 'package:haspr_assignment/components/notification_item.dart';
 import 'package:haspr_assignment/components/rectangular_round_button.dart';
@@ -23,49 +24,98 @@ class PostAdScreen extends StatelessWidget {
             TitleWidget(title: "Applications", subtitle: 'History.'),
             addVerticalSpace(30),
             Expanded(
-              child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => Container(
-                        height: 100,
-                        width: 100,
-                        color: Colors.green,
-                      ),
-                  separatorBuilder: (_, index) => Container(
-                        height: 100,
-                        color: Colors.black,
-                      ),
-                  itemCount: 6),
+              child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    final data = applicationsData[index];
+                    print(data);
+                    final isCompleted = data['isCompleted'];
+
+                    final itemColor = isCompleted
+                        ? Colors.blueGrey.shade900
+                        : Colors.red.shade900;
+
+                    return isCompleted
+                        ? ApplicationHistoryItem(
+                            isCompleted: isCompleted,
+                            rating: data['rating'],
+                            itemColor: itemColor,
+                            designation: data['designation'],
+                            companyName: data['companyName'],
+                            location: data['location'],
+                            isFulltime: data['isFulltime'],
+                            salaryDetails: data['salaryDetails'],
+                          )
+                        : ApplicationHistoryItem(
+                            isCompleted: isCompleted,
+                            itemColor: itemColor,
+                            designation: data['designation'],
+                            companyName: data['companyName'],
+                            location: data['location'],
+                            isFulltime: data['isFulltime'],
+                            salaryDetails: data['salaryDetails'],
+                          );
+                  },
+                  itemCount: applicationsData.length),
             )
           ],
         ),
       )),
     );
   }
-
-  RichText getDummyNotificationMessage() => RichText(
-        text: const TextSpan(
-            text: 'Your request for ',
-            style: TextStyle(color: Colors.black, fontSize: 12),
-            children: [
-              TextSpan(
-                  text: 'Manager',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold)),
-              TextSpan(text: ' at ', style: TextStyle(color: Colors.black)),
-              TextSpan(
-                  text: 'Badonia & sons',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text: ' has been shortlisted. Please contact',
-                  style: TextStyle(color: Colors.black)),
-              TextSpan(
-                  text: ' 9074770963 ',
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold)),
-              TextSpan(
-                  text: 'for further information.',
-                  style: TextStyle(color: Colors.black)),
-            ]),
-      );
 }
+
+const List<Map<String, dynamic>> applicationsData = [
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': false,
+  },
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': true,
+    'rating': 3,
+  },
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': true,
+    'rating': 4,
+  },
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': true,
+    'rating': 4,
+  },
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': true,
+    'rating': 4,
+  },
+  {
+    'designation': 'Manager',
+    'companyName': 'Badonia & Sons',
+    'location': 'Civil lines, Sagar',
+    'salaryDetails': '\$ 10-100/month',
+    'isFulltime': true,
+    'isCompleted': true,
+    'rating': 4,
+  },
+];
