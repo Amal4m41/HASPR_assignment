@@ -1,16 +1,25 @@
 # haspr_assignment
+<!-- ### Internship Assignment -->
 
-Internship assignment
+Demo :
+<table>
+<tr>
+    <td><img src="https://github.com/Amal4m41/HASPR_assignment/blob/master/screenshots_haspr/ss_gif.gif" height="600"/></td>
+</tr>
+</table>
+<br>
+Screens : 
+<table>
+  <tr>
+    <td><img src="https://github.com/Amal4m41/HASPR_assignment/blob/master/screenshots_haspr/1.jpg" height="600"/></td>
+    <td><img src="https://github.com/Amal4m41/HASPR_assignment/blob/master/screenshots_haspr/2.jpg" height="600"/></td>
+  </tr>
+  
+  <tr>
+    <td><img src="https://github.com/Amal4m41/HASPR_assignment/blob/master/screenshots_haspr/3.jpg" height="600"/></td>
+    <td><img src="https://github.com/Amal4m41/HASPR_assignment/blob/master/screenshots_haspr/4.jpg" height="600"/></td>
+  </tr>
+</table>
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
