@@ -167,7 +167,8 @@ class _PostAdScreenState extends State<PostAdScreen> {
                           ],
                         ),
                         buttonColor: Colors.red),
-                  )
+                  ),
+                  addVerticalSpace(20),
                 ],
               ),
             ),
