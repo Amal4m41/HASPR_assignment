@@ -21,21 +21,26 @@ class NotificationScreen extends StatelessWidget {
             SingleChildScrollView(
               child: Column(
                 children: [
-                  NotificationDivider(dividerTitle: 'Today'),
+                  const NotificationDivider(dividerTitle: 'Today'),
                   addVerticalSpace(10),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 8),
                     child: NotificationItem(
                       notificationMessage: getDummyNotificationMessage(),
+                      callback: () {
+                        showSnackBarMessage(
+                            context: context,
+                            message: 'Clicked View Notification');
+                      },
                       sinceReceivedDuration: RichText(
                         text: TextSpan(
                             text: '9',
                             style: TextStyle(
-                                color: lightGrey,
+                                color: Colors.grey.shade600,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
-                            children: [
+                            children: const [
                               TextSpan(
                                   text: ' min ago',
                                   style: TextStyle(
@@ -46,15 +51,21 @@ class NotificationScreen extends StatelessWidget {
                     ),
                   ),
                   addVerticalSpace(10),
-                  NotificationDivider(dividerTitle: 'Older'),
+                  const NotificationDivider(dividerTitle: 'Older'),
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 8),
                     child: NotificationItem(
                       notificationMessage: getDummyNotificationMessage(),
+                      callback: () {
+                        showSnackBarMessage(
+                            context: context,
+                            message: 'Clicked View Notification');
+                      },
                       sinceReceivedDuration: Text(
                         'Yesterday',
-                        style: TextStyle(color: lightGrey, fontSize: 11),
+                        style: TextStyle(
+                            color: Colors.grey.shade600, fontSize: 11),
                       ),
                     ),
                   ),

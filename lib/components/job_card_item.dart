@@ -13,12 +13,14 @@ class JobCardItem extends StatelessWidget {
   final String location;
   final bool isShowBookmark;
   final bool isShowExperience;
+  final Function() callback;
 
   const JobCardItem({
     Key? key,
     required this.jobTitle,
     required this.salaryDetails,
     required this.companyName,
+    required this.callback,
     this.experienceRequired = '',
     required this.location,
     this.isFulltime = true,
@@ -113,14 +115,18 @@ class JobCardItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const RectangularRoundButton(
-                    buttonColor: Colors.red,
-                    child: Text(
-                      'Apply Now',
-                      style: TextStyle(color: Colors.white, fontSize: 9),
+                  InkWell(
+                    onTap: () => callback(),
+                    child: const RectangularRoundButton(
+                      buttonColor: Colors.red,
+                      child: Text(
+                        'Apply Now',
+                        style: TextStyle(color: Colors.white, fontSize: 9),
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      borderRadius: 10,
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    borderRadius: 10,
                   )
                 ],
               )

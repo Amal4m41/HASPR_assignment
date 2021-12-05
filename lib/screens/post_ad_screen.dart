@@ -19,10 +19,13 @@ class PostAdScreen extends StatefulWidget {
 }
 
 class _PostAdScreenState extends State<PostAdScreen> {
+  String? nameOfService;
+  String? serviceArea;
+  String? fieldOfWork;
+
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -30,7 +33,7 @@ class _PostAdScreenState extends State<PostAdScreen> {
             padding: EdgeInsets.only(top: 25),
             // color: Colors.red,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 25),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -55,8 +58,11 @@ class _PostAdScreenState extends State<PostAdScreen> {
                   RoundBorderContainer(
                     color: lightGrey,
                     padding: 20,
-                    child: const TextField(
-                      decoration: InputDecoration.collapsed(
+                    child: TextField(
+                      onChanged: (textValue) {
+                        nameOfService = textValue;
+                      },
+                      decoration: const InputDecoration.collapsed(
                           hintText: 'Name of Your Service',
                           hintStyle: TextStyle(
                             fontSize: 16,
@@ -71,6 +77,7 @@ class _PostAdScreenState extends State<PostAdScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: DropdownButton<String>(
+                        value: serviceArea,
                         isExpanded: true,
                         hint: const Text(
                           'Service Area',
@@ -79,14 +86,13 @@ class _PostAdScreenState extends State<PostAdScreen> {
                         icon: const Icon(Icons.keyboard_arrow_down_rounded),
                         iconSize: 24,
                         elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple),
                         underline: addEmptyWidget(),
                         onChanged: (String? newValue) {
-                          // setState(() {
-                          //   dropdownValue = newValue!;
-                          // });
+                          setState(() {
+                            serviceArea = newValue;
+                          });
                         },
-                        items: <String>['One', 'Two', 'Free', 'Four']
+                        items: <String>['One', 'Two', 'Three', 'Four']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -103,7 +109,7 @@ class _PostAdScreenState extends State<PostAdScreen> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15.0),
                       child: DropdownButton<String>(
-                        // value: 'One',
+                        value: fieldOfWork,
                         isExpanded: true,
                         hint: const Text(
                           'Field of Work',
@@ -112,14 +118,14 @@ class _PostAdScreenState extends State<PostAdScreen> {
                         icon: const Icon(Icons.keyboard_arrow_down_rounded),
                         iconSize: 24,
                         elevation: 16,
-                        style: const TextStyle(color: Colors.deepPurple),
                         underline: addEmptyWidget(),
                         onChanged: (String? newValue) {
-                          // setState(() {
-                          //   dropdownValue = newValue!;
-                          // });
+                          setState(() {
+                            fieldOfWork = newValue;
+                            print(fieldOfWork);
+                          });
                         },
-                        items: <String>['One', 'Two', 'Free', 'Four']
+                        items: <String>['One', 'Two', 'Three', 'Four']
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -138,22 +144,30 @@ class _PostAdScreenState extends State<PostAdScreen> {
                     style: TextStyle(fontSize: 9),
                   ),
                   addVerticalSpace(16),
-                  RectangularRoundButton(
-                      borderRadius: 5,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            'POST ADVERTISEMENT',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                      buttonColor: Colors.red)
+                  InkWell(
+                    onTap: () {
+                      showSnackBarMessage(
+                          context: context,
+                          message: 'Post ad for: '
+                              '$nameOfService');
+                    },
+                    child: RectangularRoundButton(
+                        borderRadius: 5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'POST ADVERTISEMENT',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                        buttonColor: Colors.red),
+                  )
                 ],
               ),
             ),

@@ -5,11 +5,13 @@ import 'package:haspr_assignment/utils/widget_functions.dart';
 class NotificationItem extends StatelessWidget {
   final Widget notificationMessage;
   final Widget sinceReceivedDuration;
+  final Function() callback;
 
   const NotificationItem({
     Key? key,
     required this.notificationMessage,
     required this.sinceReceivedDuration,
+    required this.callback,
   }) : super(key: key);
 
   @override
@@ -23,17 +25,20 @@ class NotificationItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              RectangularRoundButton(
-                child: Center(
-                  child: Text(
-                    'View',
-                    style: TextStyle(color: Colors.white, fontSize: 8),
+              InkWell(
+                onTap: callback,
+                child: const RectangularRoundButton(
+                  child: Center(
+                    child: Text(
+                      'View',
+                      style: TextStyle(color: Colors.white, fontSize: 8),
+                    ),
                   ),
+                  buttonColor: Colors.red,
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  borderRadius: 5,
+                  isElevated: true,
                 ),
-                buttonColor: Colors.red,
-                padding: EdgeInsets.symmetric(vertical: 8),
-                borderRadius: 5,
-                isElevated: true,
               ),
               addVerticalSpace(8),
               sinceReceivedDuration,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haspr_assignment/screens/home_screen.dart';
 import 'package:haspr_assignment/screens/post_ad_screen.dart';
 import 'package:haspr_assignment/screens/seeker_home_screen.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const PostAdScreen(),
+      home: const HomeScreen(),
     );
   }
 }
